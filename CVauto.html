@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Currículum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(to right, #eef2f3, #8e9eab);
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: #007bff;
+      font-size: 24px;
+      margin: 0;
+      padding: 0;
+    }
+
+    p.subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .section {
+      margin-bottom: 20px;
+      padding: 15px;
+      border-left: 5px solid #007bff;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+
+    button {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      display: block;
+      width: 100%;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .preview {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .preview img {
+      max-width: 150px;
+      border-radius: 10px;
+      border: 2px solid #ddd;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .footer-credit {
+      font-size: 12px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .footer-credit a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .footer-credit a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Generador de Currículum Profesional</h1>
+    <p class="subtitle">Crea tu currículum con facilidad y destaca tus habilidades de forma única</p>
+    <div class="section">
+      <label for="name"><i class="fas fa-user"></i> Nombre Completo:</label>
+      <input type="text" id="name" placeholder="Escribe tu nombre">
+
+      <label for="ci"><i class="fas fa-id-card"></i> Cédula de Identidad:</label>
+      <input type="text" id="ci" placeholder="Escribe tu cédula">
+
+      <label for="dob"><i class="fas fa-calendar-day"></i> Fecha de Nacimiento:</label>
+      <input type="date" id="dob">
+
+      <label for="age"><i class="fas fa-birthday-cake"></i> Edad:</label>
+      <input type="number" id="age" placeholder="Escribe tu edad">
+
+      <label for="healthCard"><i class="fas fa-heartbeat"></i> Carnet de Salud:</label>
+      <input type="text" id="healthCard" placeholder="Carnet de salud">
+
+      <label for="email"><i class="fas fa-envelope"></i> Correo Electrónico:</label>
+      <input type="email" id="email" placeholder="Escribe tu correo">
+
+      <label for="phone"><i class="fas fa-phone-alt"></i> Teléfono:</label>
+      <input type="tel" id="phone" placeholder="Escribe tu teléfono">
+
+      <label for="address"><i class="fas fa-home"></i> Dirección:</label>
+      <input type="text" id="address" placeholder="Escribe tu dirección">
+
+      <label for="education"><i class="fas fa-graduation-cap"></i> Educación:</label>
+      <textarea id="education" placeholder="Tu formación educativa"></textarea>
+
+      <label for="skills"><i class="fas fa-cogs"></i> Habilidades:</label>
+      <textarea id="skills" placeholder="Escribe tus habilidades"></textarea>
+
+      <label for="experience"><i class="fas fa-briefcase"></i> Experiencia Laboral:</label>
+      <textarea id="experience" placeholder="Tu experiencia laboral"></textarea>
+
+      <label for="languages"><i class="fas fa-language"></i> Idiomas:</label>
+      <textarea id="languages" placeholder="Escribe tus idiomas"></textarea>
+
+      <label for="selfDescription"><i class="fas fa-comment-dots"></i> Descripción Personal:</label>
+      <textarea id="selfDescription" placeholder="Escribe algo sobre ti"></textarea>
+
+      <label for="photo"><i class="fas fa-camera"></i> Subir Foto:</label>
+      <input type="file" id="photo" accept="image/*">
+      <div class="preview">
+        <p>Vista previa de la foto:</p>
+        <img id="photoPreview" alt="Foto">
+      </div>
+    </div>
+
+    <button onclick="generatePDF()">Generar Currículum</button>
+  </div>
+
+  <footer>
+    <div class="footer-credit">
+      Creado por <strong>Maicol Boghtchumian</strong>. Sígueme en <a href="https://instagram.com/maicolbochu" target="_blank">Instagram</a>.
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script>
+    const photoPreview = document.getElementById('photoPreview');
+    const photoInput = document.getElementById('photo');
+
+    // Mostrar vista previa de la imagen
+    photoInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          photoPreview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    async function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const name = document.getElementById('name').value;
+      const ci = document.getElementById('ci').value;
+      const dob = document.getElementById('dob').value;
+      const age = document.getElementById('age').value;
+      const healthCard = document.getElementById('healthCard').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const education = document.getElementById('education').value;
+      const skills = document.getElementById('skills').value;
+      const experience = document.getElementById('experience').value;
+      const languages = document.getElementById('languages').value;
+      const selfDescription = document.getElementById('selfDescription').value;
+
+      const pageWidth = doc.internal.pageSize.width;
+      const margin = 20;
+      let y = 40; // Mover el inicio un poco más abajo para el título
+
+      // Título en la parte superior izquierda
+      doc.setFontSize(18);
+      doc.setFont('Montserrat', 'bold');
+      doc.text('Currículum Vitae', margin, y);
+      y += 20;
+
+      doc.setFontSize(12);
+      doc.setFont('Roboto', 'normal');
+
+      // Función para agregar texto con ajuste de línea
+      const addText = (label, text) => {
+        const lines = doc.splitTextToSize(`${label} ${text}`, pageWidth - 2 * margin);
+        doc.text(lines, margin, y);
+        y += lines.length * 10;
+
+        if (y > doc.internal.pageSize.height - margin) {
+          doc.setFontSize(10); // Reducir el tamaño de la fuente cuando el texto se acerca al final de la página
+          y = margin;
+        }
+      };
+
+      // Asegurando el orden correcto de los datos
+      addText('Nombre:', name);
+      addText('Cédula de Identidad:', ci);
+      addText('Fecha de Nacimiento:', dob);
+      addText('Edad:', age);
+      addText('Carnet de Salud:', healthCard);
+      addText('Correo:', email);
+      addText('Teléfono:', phone);
+      addText('Dirección:', address);
+      addText('Educación:', education);
+      addText('Habilidades:', skills);
+      addText('Experiencia Laboral:', experience);
+      addText('Idiomas:', languages);
+      addText('Descripción Personal:', selfDescription);
+
+      // Agregar la foto en la parte superior derecha
+      if (photoPreview.src) {
+        const img = new Image();
+        img.src = photoPreview.src;
+        img.onload = () => {
+          const imgWidth = 50;
+          const imgHeight = 50;
+          const x = pageWidth - imgWidth - margin; 
+          const yImg = margin;
+          doc.addImage(img, 'JPEG', x, yImg, imgWidth, imgHeight);
+
+          doc.save('curriculum.pdf');
+        };
+      } else {
+        doc.save('curriculum.pdf');
+      }
+    }
+  </script>
+</body>
+</html>
